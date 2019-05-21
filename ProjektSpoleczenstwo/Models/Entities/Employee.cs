@@ -12,6 +12,8 @@ namespace ProjektSpoleczenstwo.Models.Entities
         public string Surname { get; set; }
         public string Age { get; set; }
         public string Token { get; set; }
-        public ICollection<WorkHours> WorkHours { get; set; }
+        public virtual Department Department { get; set; }
+        public virtual Jobs Job { get; set; }
+        public virtual ICollection<WorkHours> WorkHours { get; set; }
     }
 }

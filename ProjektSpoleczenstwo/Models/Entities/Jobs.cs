@@ -1,15 +1,17 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.ComponentModel.DataAnnotations.Schema;
 using System.Linq;
 using System.Web;
 
 namespace ProjektSpoleczenstwo.Models.Entities
 {
-    public class WorkHours
+    public class Jobs
     {
+        [ForeignKey("Employee")]
         public int Id { get; set; }
-        public DateTime PunchTime { get; set; }
-        public int EmployeeId { get; set; }
+        public string Title { get; set; }
+        public double Salary { get; set; }
         public virtual Employee Employee { get; set; }
     }
 }

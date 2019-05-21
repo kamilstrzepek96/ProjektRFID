@@ -3,6 +3,7 @@ using System.Security.Claims;
 using System.Threading.Tasks;
 using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.EntityFramework;
+using ProjektSpoleczenstwo.Models.Entities;
 
 namespace ProjektSpoleczenstwo.Models
 {
@@ -24,6 +25,11 @@ namespace ProjektSpoleczenstwo.Models
             : base("DefaultConnection", throwIfV1Schema: false)
         {
         }
+
+        public DbSet<Employee> Employee { get; set; }
+        public DbSet<WorkHours> WorkHours { get; set; }
+        public DbSet<Jobs> Jobs { get; set; }
+        public DbSet<Department> Departments { get; set; }
 
         public static ApplicationDbContext Create()
         {

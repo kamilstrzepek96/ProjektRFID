@@ -68,6 +68,8 @@ namespace ProjektSpoleczenstwo.Controllers
             return View(model);
         }
 
+
+
         //
         // GET: /Manage/ChangePassword
         public ActionResult ChangePassword()
