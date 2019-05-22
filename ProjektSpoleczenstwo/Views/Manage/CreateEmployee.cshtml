@@ -1,0 +1,70 @@
+﻿@model ProjektSpoleczenstwo.ViewModels.EmployeeViewModel
+@{
+    ViewBag.Title = "CreateEmployee";
+}
+
+<h2>CreateEmployee</h2>
+
+@*@foreach (var department in Model.DepartmentName)
+    {
+        <span>@department</span>
+    }
+    @foreach (var job in Model.JobName)
+    {
+        <span> job</span>
+    }*@
+
+@using (Html.BeginForm("CreateEmployee", "Manage", FormMethod.Post, new { @class = "form-horizontal", role = "form" }))
+{
+    @Html.AntiForgeryToken()
+    <h4>Create a new account.</h4>
+    <hr />
+    @Html.ValidationSummary("", new { @class = "text-danger" })
+    <div class="form-group">
+        @Html.LabelFor(m => m.Name, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Name, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Surname, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Surname, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.Age, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.TextBoxFor(m => m.Age, new { @class = "form-control" })
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.DepartmentId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Deps, "Value", "Text"))
+        </div>
+    </div>
+    <div class="form-group">
+        @Html.LabelFor(m => m.JobId, new { @class = "col-md-2 control-label" })
+        <div class="col-md-10">
+            @Html.DropDownListFor(m => m.JobId, new SelectList(Model.Jobs, "Value", "Text"))
+        </div>
+    </div>
+    for (int i = 0; i < Model.Deps.Count; i++)
+    {
+        @Html.HiddenFor(model => Model.Deps[i].Text)
+        @Html.HiddenFor(model => Model.Deps[i].Value)
+    }
+    for (int i = 0; i < Model.Jobs.Count; i++)
+    {
+        @Html.HiddenFor(model => Model.Jobs[i].Text)
+        @Html.HiddenFor(model => Model.Jobs[i].Value)
+    }
+    @ViewBag.Error
+    @ViewBag.Succes
+    <div class="form-group">
+        <div class="col-md-offset-2 col-md-10">
+            <input type="submit" class="btn btn-default" value="Dodaj" />
+        </div>
+    </div>
+}

@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Linq;
 using System.Threading.Tasks;
 using System.Web;
@@ -7,6 +8,8 @@ using Microsoft.AspNet.Identity;
 using Microsoft.AspNet.Identity.Owin;
 using Microsoft.Owin.Security;
 using ProjektSpoleczenstwo.Models;
+using ProjektSpoleczenstwo.Models.Entities;
+using ProjektSpoleczenstwo.ViewModels;
 
 namespace ProjektSpoleczenstwo.Controllers
 {
@@ -15,6 +18,7 @@ namespace ProjektSpoleczenstwo.Controllers
     {
         private ApplicationSignInManager _signInManager;
         private ApplicationUserManager _userManager;
+        ApplicationDbContext db = new ApplicationDbContext();
 
         public ManageController()
         {
@@ -67,8 +71,64 @@ namespace ProjektSpoleczenstwo.Controllers
             };
             return View(model);
         }
+        public ActionResult CreateEmployee()
+        {
+            //ViewBag.DepartmentList = db.Departments.Select(x=> new SelectListItem { 
+            //Value = x.Id.ToString(),
+            //Text = x.Name,
+            //Selected = x.Id.Equals(1)
+            //}).AsEnumerable();
+            List<SelectListItem> deps = db.Departments.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Name
+            }).ToList();
+            List<SelectListItem> jobs = db.Jobs.Select(x => new SelectListItem
+            {
+                Value = x.Id.ToString(),
+                Text = x.Title
+            }).ToList();
+            EmployeeViewModel employee = new EmployeeViewModel()
+            {
+                Deps = deps,
+                Jobs = jobs
+            };
+            //ViewBag.DepartmentList = db.Departments.Select(x => new SelectListItem
+            //{
+            //    Value = x.Id.ToString(),
+            //    Text = x.Name
+            //});
+            //ViewBag.JobsList = db.Jobs.Select(x => new SelectListItem
+            //{
+            //    Value = x.Id.ToString(),
+            //    Text = x.Title
+            //});
+            return View(employee);
+        }
+        
+        [HttpPost]
+        public ActionResult CreateEmployee(EmployeeViewModel employee)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = "Nieprawidłowe dane";
+                return View(employee);
+            }
 
-
+            Employee newEmployee = new Employee()
+            {
+                Name = employee.Name,
+                Surname = employee.Surname,
+                Age = employee.Age,
+                Token = Guid.NewGuid().ToString("N"),
+                Department = db.Departments.Find(employee.DepartmentId),
+                Job = db.Jobs.Find(employee.JobId)
+            };
+            db.Employee.Add(newEmployee);
+            db.SaveChanges();
+            ViewBag.Succes = "Użytkownik został dodany";
+            return View(employee);
+        }
 
         //
         // GET: /Manage/ChangePassword

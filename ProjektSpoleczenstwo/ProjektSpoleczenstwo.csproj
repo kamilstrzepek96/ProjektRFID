@@ -183,6 +183,22 @@
     <Compile Include="Migrations\201905211815378_new.Designer.cs">
       <DependentUpon>201905211815378_new.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905211829252_new2.cs" />
+    <Compile Include="Migrations\201905211829252_new2.Designer.cs">
+      <DependentUpon>201905211829252_new2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905211917032_new3.cs" />
+    <Compile Include="Migrations\201905211917032_new3.Designer.cs">
+      <DependentUpon>201905211917032_new3.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905220847026_a.cs" />
+    <Compile Include="Migrations\201905220847026_a.Designer.cs">
+      <DependentUpon>201905220847026_a.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905220849263_ab.cs" />
+    <Compile Include="Migrations\201905220849263_ab.Designer.cs">
+      <DependentUpon>201905220849263_ab.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Department.cs" />
@@ -193,6 +209,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\EmployeeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -237,6 +254,7 @@
     <Content Include="Views\Shared\Lockout.cshtml" />
     <Content Include="Views\Shared\_LoginPartial.cshtml" />
     <Content Include="Views\Manage\ChangePassword.cshtml" />
+    <Content Include="Views\Manage\CreateEmployee.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -257,6 +275,18 @@
   <ItemGroup>
     <EmbeddedResource Include="Migrations\201905211815378_new.resx">
       <DependentUpon>201905211815378_new.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211829252_new2.resx">
+      <DependentUpon>201905211829252_new2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905211917032_new3.resx">
+      <DependentUpon>201905211917032_new3.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905220847026_a.resx">
+      <DependentUpon>201905220847026_a.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905220849263_ab.resx">
+      <DependentUpon>201905220849263_ab.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

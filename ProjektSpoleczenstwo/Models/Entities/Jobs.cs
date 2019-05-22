@@ -8,10 +8,10 @@ namespace ProjektSpoleczenstwo.Models.Entities
 {
     public class Jobs
     {
-        [ForeignKey("Employee")]
         public int Id { get; set; }
         public string Title { get; set; }
         public double Salary { get; set; }
-        public virtual Employee Employee { get; set; }
+        //public int EmployeeId { get; set; }
+        //public virtual ICollection<Employee> Employee { get; set; }
     }
 }
