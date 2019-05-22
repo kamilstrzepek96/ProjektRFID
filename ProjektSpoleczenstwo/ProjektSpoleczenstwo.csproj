@@ -198,6 +198,10 @@
     <Compile Include="Migrations\201905220849263_ab.Designer.cs">
       <DependentUpon>201905220849263_ab.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905221804320_increment pk.cs" />
+    <Compile Include="Migrations\201905221804320_increment pk.Designer.cs">
+      <DependentUpon>201905221804320_increment pk.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Department.cs" />
@@ -206,10 +210,12 @@
     <Compile Include="Models\Entities\WorkHours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PunchIn.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DepartmentViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
+    <Compile Include="ViewModels\JobViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -287,6 +293,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905220849263_ab.resx">
       <DependentUpon>201905220849263_ab.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905221804320_increment pk.resx">
+      <DependentUpon>201905221804320_increment pk.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

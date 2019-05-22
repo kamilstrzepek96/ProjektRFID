@@ -76,8 +76,33 @@ namespace ProjektSpoleczenstwo.Controllers
         {
             return View();
         }
+        [HttpPost]
+        public ActionResult CreateJob(JobViewModel job)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = "Nieprawidłowe dane";
+                return View();
+            }
+            if(db.Jobs.Any(x=>x.Title == job.Title))
+            {
+                ViewBag.Error = "Stanowisko już istnieje";
+                return View();
+            }
+            Jobs newJob = new Jobs()
+            {
+                Title = job.Title,
+                Salary=job.Salary
+            };
 
-        public ActionResult CreateDeparment()
+            db.Jobs.Add(newJob);
+            db.SaveChanges();
+            ViewBag.Success = "Operacja wykonana pomyślnie";
+
+            return View();
+        }
+
+        public ActionResult CreateDepartment()
         {
             return View();
         }
@@ -109,7 +134,11 @@ namespace ProjektSpoleczenstwo.Controllers
 
         public ActionResult Activity()
         {
-            return View();
+            PunchIn hours = new PunchIn()
+            {
+                WorkHours = db.WorkHours.ToList()
+            };
+            return View(hours);
         }
 
         public ActionResult CreateEmployee()

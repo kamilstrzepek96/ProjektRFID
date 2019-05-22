@@ -1,7 +1,32 @@
-﻿
+﻿@model ProjektSpoleczenstwo.Models.PunchIn
 @{
-    ViewBag.Title = "Activity";
+    ViewBag.Title = "Aktywność";
+    int lp = 1;
 }
 
-<h2>Activity</h2>
+<h2>Godziny pracy</h2>
 
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Data</th>
+            <th scope="col">Pracownik</th>
+            <th scope="col">Oddział</th>
+            <th scope="col">Stanowisko</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var punchIn in Model.WorkHours)
+        {
+            <tr>
+                <td scope="row">@lp</td>
+                <td>@punchIn.PunchTime</td>
+                <td>@punchIn.Employee.Name &nbsp;@punchIn.Employee.Surname</td>
+                <td>@punchIn.Employee.Department.Name</td>
+                <td>@punchIn.Employee.Job.Title</td>
+            </tr>
+            lp++;
+        }
+    </tbody>
+</table>

@@ -28,7 +28,5 @@ namespace ProjektSpoleczenstwo.ViewModels
         public int JobId { get; set; }
         public List<SelectListItem> Jobs { get; set; }
         public List<SelectListItem> Deps { get; set; }
-        //public List<string> DepartmentName { get; set; }
-        //public List<string> JobName { get; set; }
     }
 }
