@@ -8,6 +8,7 @@ namespace ProjektSpoleczenstwo.Models.Entities
 {
     public class Jobs
     {
+        [DatabaseGenerated(DatabaseGeneratedOption.Identity)]
         public int Id { get; set; }
         public string Title { get; set; }
         public double Salary { get; set; }

@@ -18,6 +18,7 @@ namespace ProjektSpoleczenstwo.ViewModels
         public string Surname { get; set; }
         [Required]
         [Display(Name = "Wiek")]
+        [Range(18, int.MaxValue, ErrorMessage = "Wymagany wiek to 18 lat")]
         public int Age { get; set; }
         [Required]
         [Display(Name = "Wydział")]
