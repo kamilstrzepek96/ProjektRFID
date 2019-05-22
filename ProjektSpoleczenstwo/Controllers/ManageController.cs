@@ -59,8 +59,8 @@ namespace ProjektSpoleczenstwo.Controllers
         public async Task<ActionResult> Index(ManageMessageId? message)
         {
             ViewBag.StatusMessage =
-                message == ManageMessageId.ChangePasswordSuccess ? "Your password has been changed."
-                : message == ManageMessageId.Error ? "An error has occurred."
+                message == ManageMessageId.ChangePasswordSuccess ? "Hasło zostało zmienione."
+                : message == ManageMessageId.Error ? "Wystąpił błąd."
                 : "";
 
             var userId = User.Identity.GetUserId();
@@ -73,11 +73,6 @@ namespace ProjektSpoleczenstwo.Controllers
         }
         public ActionResult CreateEmployee()
         {
-            //ViewBag.DepartmentList = db.Departments.Select(x=> new SelectListItem { 
-            //Value = x.Id.ToString(),
-            //Text = x.Name,
-            //Selected = x.Id.Equals(1)
-            //}).AsEnumerable();
             List<SelectListItem> deps = db.Departments.Select(x => new SelectListItem
             {
                 Value = x.Id.ToString(),
@@ -93,16 +88,7 @@ namespace ProjektSpoleczenstwo.Controllers
                 Deps = deps,
                 Jobs = jobs
             };
-            //ViewBag.DepartmentList = db.Departments.Select(x => new SelectListItem
-            //{
-            //    Value = x.Id.ToString(),
-            //    Text = x.Name
-            //});
-            //ViewBag.JobsList = db.Jobs.Select(x => new SelectListItem
-            //{
-            //    Value = x.Id.ToString(),
-            //    Text = x.Title
-            //});
+
             return View(employee);
         }
         
