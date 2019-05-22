@@ -208,6 +208,7 @@
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="ViewModels\DepartmentViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -252,6 +253,8 @@
     <Content Include="Views\Manage\ChangePassword.cshtml" />
     <Content Include="Views\Manage\CreateEmployee.cshtml" />
     <Content Include="Views\Manage\Activity.cshtml" />
+    <Content Include="Views\Manage\CreateDepartment.cshtml" />
+    <Content Include="Views\Manage\CreateJob.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

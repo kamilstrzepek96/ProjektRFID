@@ -71,7 +71,46 @@ namespace ProjektSpoleczenstwo.Controllers
             };
             return View(model);
         }
-       
+
+        public ActionResult CreateJob()
+        {
+            return View();
+        }
+
+        public ActionResult CreateDeparment()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public ActionResult CreateDepartment(DepartmentViewModel department)
+        {
+            if (!ModelState.IsValid)
+            {
+                ViewBag.Error = "Nieprawidłowe dane";
+                return View();
+            }
+            if (db.Departments.Any(x => x.Name == department.Name))
+            {
+                ViewBag.Error = "Oddział już istnieje";
+                return View();
+            }
+            Department newDep = new Department()
+            {
+                Name = department.Name,
+                Location = department.Location
+            };
+
+            db.Departments.Add(newDep);
+            db.SaveChanges();
+            ViewBag.Success = "Operacja wykonana pomyślnie";
+            return View();
+        }
+
+        public ActionResult Activity()
+        {
+            return View();
+        }
 
         public ActionResult CreateEmployee()
         {
