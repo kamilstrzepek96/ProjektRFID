@@ -1,0 +1,61 @@
+﻿@model List<ProjektSpoleczenstwo.Models.UserNameViewModel>
+@{
+    ViewBag.Title = "Rejestracja karty";
+    int lp = 1;
+}
+
+<h2>@ViewBag.Title.</h2>
+
+
+<table class="table table-sm table-hover">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pracownik</th>
+            <th scope="col">Karta</th>
+            <th scope="col">Akcja</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var usr in Model)
+        {
+            <tr>
+                <td scope="row">@lp</td>
+                <td>@usr.Name</td>
+                <td>@usr.CardUID</td>
+                <td href="#"><span class="assignCard" data-id="@usr.Id">@(usr.CardRequest?"Anuluj":"Przypisz")</span></td>
+            </tr>
+            lp++;
+        }
+    </tbody>
+</table>
+<script>
+
+    $(document).ready(function () {
+        $(".assignCard").on("click", function (e) {
+
+            var userID = e.currentTarget.getAttribute("data-id");
+            $.ajax('/Account/CardRequest', {
+                type: 'POST',  // http method
+                data: { EmployeeId: userID },  // data to submit
+                statusCode: {
+                    400: function (responseObject, textStatus, jqXHR) {
+                        alert("Kartę można przypisać jednocześnie do jednego użytkownika.");                       
+                    },
+                    200: function (responseObject, textStatus, errorThrown) {
+                        if (!alert("Możesz teraz przyłożyć kartę.")) {
+                            location.reload();
+                        }
+                    },
+                    201: function (responseObject, textStatus, errorThrown) {
+                        if (!alert("Anulowano rejestrację")) {
+                            location.reload();
+                        }
+                    }
+                }
+            });
+        });
+    });
+
+
+</script>

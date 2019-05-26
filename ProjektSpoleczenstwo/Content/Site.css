@@ -22,3 +22,31 @@ select,
 textarea {
     max-width: 280px;
 }
+/*.input-validation-error{
+    border:1px solid red;
+}
+.field-validation-error{
+    color:orange;
+}
+.validation-summary-errors{
+    border:1px solid black;
+    bolor:blue;
+}*/
+
+.employeeIn {
+    background-color: #dcffdc;
+}
+.employeeOut {
+    background-color: #ffd6d6;
+}
+.employeeIn:hover {
+    background-color: #a1ffa1 !important;
+    transition: all 0.5s;
+}
+.employeeOut:hover {
+    background-color: #ffb0b0 !important;
+    transition: all 0.5s;
+}
+.assignCard{
+    cursor:pointer;
+}

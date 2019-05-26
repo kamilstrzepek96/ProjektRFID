@@ -6,7 +6,7 @@
 
 <h2>Godziny pracy</h2>
 
-<table class="table table-sm table-hover">
+<table class="table table-sm "> @*table-hover*@
     <thead>
         <tr>
             <th scope="col">#</th>
@@ -14,17 +14,21 @@
             <th scope="col">Pracownik</th>
             <th scope="col">Oddział</th>
             <th scope="col">Stanowisko</th>
+            <th scope="col">Typ</th>
+            <th scope="col">Czas pracy</th>
         </tr>
     </thead>
     <tbody>
         @foreach (var punchIn in Model.WorkHours)
         {
-            <tr>
+            <tr class="@(punchIn.PunchType==ProjektSpoleczenstwo.Models.PunchEnum.IN ? "employeeIn" : "employeeOut")">
                 <td scope="row">@lp</td>
                 <td>@punchIn.PunchTime</td>
                 <td>@punchIn.Employee.Name &nbsp;@punchIn.Employee.Surname</td>
                 <td>@punchIn.Employee.Department.Name</td>
                 <td>@punchIn.Employee.Job.Title</td>
+                <td>@punchIn.PunchType</td>
+                <td>@(punchIn.ElapsedTime==null ? "---": punchIn.ElapsedTime.ToString())</td>
             </tr>
             lp++;
         }

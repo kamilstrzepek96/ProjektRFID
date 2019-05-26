@@ -45,7 +45,13 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="log4net, Version=1.2.13.0, Culture=neutral, PublicKeyToken=669e0ddf0bb1aa2a, processorArchitecture=MSIL">
+      <HintPath>..\packages\log4net.2.0.3\lib\net40-full\log4net.dll</HintPath>
+    </Reference>
     <Reference Include="Microsoft.CSharp" />
+    <Reference Include="PusherServer, Version=4.1.0.0, Culture=neutral, processorArchitecture=MSIL">
+      <HintPath>..\packages\PusherServer.4.1.0\lib\net45\PusherServer.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
@@ -202,6 +208,26 @@
     <Compile Include="Migrations\201905221804320_increment pk.Designer.cs">
       <DependentUpon>201905221804320_increment pk.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201905250814294_e.cs" />
+    <Compile Include="Migrations\201905250814294_e.Designer.cs">
+      <DependentUpon>201905250814294_e.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905250853154_e2.cs" />
+    <Compile Include="Migrations\201905250853154_e2.Designer.cs">
+      <DependentUpon>201905250853154_e2.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251548075_asd.cs" />
+    <Compile Include="Migrations\201905251548075_asd.Designer.cs">
+      <DependentUpon>201905251548075_asd.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905251722517_asd1.cs" />
+    <Compile Include="Migrations\201905251722517_asd1.Designer.cs">
+      <DependentUpon>201905251722517_asd1.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201905260815016_asd2.cs" />
+    <Compile Include="Migrations\201905260815016_asd2.Designer.cs">
+      <DependentUpon>201905260815016_asd2.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Entities\Department.cs" />
@@ -210,12 +236,15 @@
     <Compile Include="Models\Entities\WorkHours.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
+    <Compile Include="Models\PunchEnum.cs" />
     <Compile Include="Models\PunchIn.cs" />
+    <Compile Include="Models\UserNameViewModel.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\DepartmentViewModel.cs" />
     <Compile Include="ViewModels\EmployeeViewModel.cs" />
     <Compile Include="ViewModels\JobViewModel.cs" />
+    <Compile Include="ViewModels\SummaryViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -261,6 +290,8 @@
     <Content Include="Views\Manage\Activity.cshtml" />
     <Content Include="Views\Manage\CreateDepartment.cshtml" />
     <Content Include="Views\Manage\CreateJob.cshtml" />
+    <Content Include="Views\Manage\RegisterCard.cshtml" />
+    <Content Include="Views\Manage\Summary.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -296,6 +327,21 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201905221804320_increment pk.resx">
       <DependentUpon>201905221804320_increment pk.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250814294_e.resx">
+      <DependentUpon>201905250814294_e.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905250853154_e2.resx">
+      <DependentUpon>201905250853154_e2.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251548075_asd.resx">
+      <DependentUpon>201905251548075_asd.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905251722517_asd1.resx">
+      <DependentUpon>201905251722517_asd1.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201905260815016_asd2.resx">
+      <DependentUpon>201905260815016_asd2.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

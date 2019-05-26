@@ -1,0 +1,37 @@
+﻿@model List<ProjektSpoleczenstwo.ViewModels.SummaryViewModel>
+@{
+    ViewBag.Title = "Summary";
+    int lp = 1;
+}
+
+<h2>Podsumowanie</h2>
+
+<table class="table table-sm ">
+    @*table-hover*@
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Pracownik</th>
+            <th scope="col">Oddział</th>
+            <th scope="col">Stanowisko</th>
+            <th scope="col">Godziny pracy</th>
+            <th scope="col">Wypłata</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var employee in Model)
+        {
+            <tr>
+                <td scope="row">@lp</td>
+                <td>@employee.Employee</td>
+                <td>@employee.Department</td>
+                <td>@employee.Job</td>
+                <td>@employee.WorkHours</td>
+                <td>@employee.Salary</td>
+            </tr>
+            lp++;
+        }
+    </tbody>
+</table>
+
+

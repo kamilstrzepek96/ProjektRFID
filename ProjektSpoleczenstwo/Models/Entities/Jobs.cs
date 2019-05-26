@@ -12,7 +12,7 @@ namespace ProjektSpoleczenstwo.Models.Entities
         public int Id { get; set; }
         public string Title { get; set; }
         public double Salary { get; set; }
-        //public int EmployeeId { get; set; }
-        //public virtual ICollection<Employee> Employee { get; set; }
+        public TimeSpan WorkFromTime { get; set; }
+        public TimeSpan WorkToTime { get; set; }
     }
 }

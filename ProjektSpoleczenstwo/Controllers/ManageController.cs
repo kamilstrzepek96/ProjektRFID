@@ -36,9 +36,9 @@ namespace ProjektSpoleczenstwo.Controllers
             {
                 return _signInManager ?? HttpContext.GetOwinContext().Get<ApplicationSignInManager>();
             }
-            private set 
-            { 
-                _signInManager = value; 
+            private set
+            {
+                _signInManager = value;
             }
         }
 
@@ -72,6 +72,33 @@ namespace ProjektSpoleczenstwo.Controllers
             return View(model);
         }
 
+        public ActionResult RegisterCard()
+        {
+            List<UserNameViewModel> usersList = db.Employee.Select(x => new UserNameViewModel { Name = x.Name + " " + x.Surname, CardRequest = x.RegisterCard, Id = x.Id, CardUID = String.IsNullOrEmpty(x.CardUID) ? "brak karty" : x.CardUID }).ToList();
+
+            return View(usersList);
+        }
+        [HttpGet]
+        public ActionResult Summary()
+        {
+            DateTime ThisMonth = new DateTime(DateTime.Now.Year,DateTime.Now.Month,1);
+            List<WorkHours> HoursList = db.WorkHours.Where(x=>x.PunchTime >= ThisMonth).ToList();
+            List<SummaryViewModel> summary = new List<SummaryViewModel>();
+            foreach (var emp in db.Employee.ToList())
+            {
+                
+                var workhrs = HoursList.Where(x=>x.EmployeeId == emp.Id).Select(x=>x.ElapsedTime).Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
+                summary.Add(new SummaryViewModel() {
+                    Employee = emp.Name+" "+emp.Surname,
+                    Salary = workhrs.Hours*emp.Job.Salary,
+                    Department = emp.Department.Name,
+                    Job = emp.Job.Title,
+                    WorkHours = workhrs.Hours
+                });
+            }
+            return View(summary);
+        }
+
         public ActionResult CreateJob()
         {
             return View();
@@ -84,7 +111,7 @@ namespace ProjektSpoleczenstwo.Controllers
                 ViewBag.Error = "Nieprawidłowe dane";
                 return View();
             }
-            if(db.Jobs.Any(x=>x.Title == job.Title))
+            if (db.Jobs.Any(x => x.Title == job.Title))
             {
                 ViewBag.Error = "Stanowisko już istnieje";
                 return View();
@@ -92,7 +119,9 @@ namespace ProjektSpoleczenstwo.Controllers
             Jobs newJob = new Jobs()
             {
                 Title = job.Title,
-                Salary=job.Salary
+                Salary = job.Salary,
+                WorkFromTime = job.FromTime,
+                WorkToTime = job.ToTime
             };
 
             db.Jobs.Add(newJob);
@@ -136,7 +165,7 @@ namespace ProjektSpoleczenstwo.Controllers
         {
             PunchIn hours = new PunchIn()
             {
-                WorkHours = db.WorkHours.ToList()
+                WorkHours = db.WorkHours.OrderBy(x => x.PunchTime).ToList()
             };
             return View(hours);
         }
@@ -161,22 +190,21 @@ namespace ProjektSpoleczenstwo.Controllers
 
             return View(employee);
         }
-        
+
         [HttpPost]
         public ActionResult CreateEmployee(EmployeeViewModel employee)
         {
             if (!ModelState.IsValid)
             {
-                ViewBag.Error = "Nieprawidłowe dane";
+                //ViewBag.Error = "Nieprawidłowe dane";
                 return View(employee);
             }
-
             Employee newEmployee = new Employee()
             {
                 Name = employee.Name,
                 Surname = employee.Surname,
                 Age = employee.Age,
-                Token = Guid.NewGuid().ToString("N"),
+                //Token = Convert.ToBase64String(Guid.NewGuid().ToByteArray()),
                 Department = db.Departments.Find(employee.DepartmentId),
                 Job = db.Jobs.Find(employee.JobId)
             };
@@ -273,7 +301,7 @@ namespace ProjektSpoleczenstwo.Controllers
             base.Dispose(disposing);
         }
 
-#region Helpers
+        #region Helpers
         // Used for XSRF protection when adding external logins
         private const string XsrfKey = "XsrfId";
 
@@ -324,6 +352,6 @@ namespace ProjektSpoleczenstwo.Controllers
             Error
         }
 
-#endregion
+        #endregion
     }
 }
