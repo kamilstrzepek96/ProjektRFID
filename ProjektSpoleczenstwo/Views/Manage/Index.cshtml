@@ -4,38 +4,48 @@
 }
 
 <h2>@ViewBag.Title.</h2>
-
+<hr>
 <p class="text-success">@ViewBag.StatusMessage</p>
-<div>
-    <h4>Zarządzanie</h4>
-    <hr />
-    <dl class="dl-horizontal">
-        <dt>Utwórz pracownika</dt>
-        <dd>[@Html.ActionLink("Utwórz", "CreateEmployee", "Manage")]</dd>
-        <dt>Utwórz oddział</dt>
-        <dd>[@Html.ActionLink("Utwórz", "CreateDepartment", "Manage")]</dd>
-        <dt>Utwórz stanowisko</dt>
-        <dd>[@Html.ActionLink("Utwórz", "CreateJob", "Manage")]</dd>
-        <dt>Przypisz kartę</dt>
-        <dd>[@Html.ActionLink("Przypisz", "RegisterCard", "Manage")]</dd>
-        <dt>Analiza aktywności</dt>
-        <dd>[@Html.ActionLink("Tabela aktywności", "Activity", "Manage")]</dd>
-        <dt>Podsumowanie</dt>
-        <dd>[@Html.ActionLink("Podsumowanie", "Summary", "Manage")]</dd>
-        <dt>Dodaj administratora</dt>
-        <dd>[@Html.ActionLink("Zarejestruj", "Register", "Account")]</dd>
-        <dt>Hasło:</dt>
-        <dd>
-            [
-            @if (Model.HasPassword)
-            {
-                @Html.ActionLink("Zmień hasło", "ChangePassword")
-            }
-            else
-            {
-                @Html.ActionLink("Create", "SetPassword")
-            }
-            ]
-        </dd>
-    </dl>
+<div class="tilesContainer">
+    <a href="@Url.Action("CreateEmployee", "Manage")" class="btnWrap">
+        <button class="tile">
+            Stwórz pracownika
+        </button>
+    </a>
+    <a href="@Url.Action("CreateDepartment", "Manage")" class="btnWrap">
+        <button class="tile">
+            Stwórz oddział
+        </button>
+    </a>
+    <a href="@Url.Action("CreateJob", "Manage")" class="btnWrap">
+        <button class="tile">
+            Stwórz stanowisko
+        </button>
+    </a>
+    <a href="@Url.Action("RegisterCard", "Manage")" class="btnWrap">
+        <button class="tile">
+            Przypisz kartę
+        </button>
+    </a>
+    <a href="@Url.Action("Activity", "Manage")" class="btnWrap">
+        <button class="tile">
+            Tabela aktywności
+        </button>
+    </a>
+    <a href="@Url.Action("Summary", "Manage")" class="btnWrap">
+        <button class="tile">
+            Podsumowanie
+        </button>
+    </a>
+    <a href="@Url.Action("Register", "Account")" class="btnWrap">
+        <button class="tile">
+            Dodaj administratora
+        </button>
+    </a>
+    <a href="@Url.Action("ChangePassword","Manage")" class="btnWrap">
+        <button class="tile">
+            Zmień hasło
+        </button>
+    </a>
+
 </div>

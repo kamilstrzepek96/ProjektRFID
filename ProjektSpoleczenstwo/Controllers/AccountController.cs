@@ -95,7 +95,7 @@ namespace ProjektSpoleczenstwo.Controllers
             Employee emp = db.Employee.SingleOrDefault(x => x.CardUID == UID);
             if (emp == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.Conflict);
             }
             //jesli ktos pracuje za dlugo to ustawia mu i tak maksymalna godzine pracy?
             //jesli ktos sie nie odbil jednego dnia to drugiego dnia ustawia mu wyjscie na godzinę ukonczenia pracy w dbjob

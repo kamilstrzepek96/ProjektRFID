@@ -36,17 +36,90 @@ textarea {
 .employeeIn {
     background-color: #dcffdc;
 }
+
 .employeeOut {
     background-color: #ffd6d6;
 }
+
 .employeeIn:hover {
     background-color: #a1ffa1 !important;
     transition: all 0.5s;
 }
+
 .employeeOut:hover {
     background-color: #ffb0b0 !important;
     transition: all 0.5s;
 }
-.assignCard{
-    cursor:pointer;
+
+.assignCard {
+    cursor: pointer;
 }
+
+.tilesContainer {
+    display: grid;
+    grid-gap: 15px;
+    font-size: 18px;
+    font-weight: bold;
+    grid-template-columns: repeat(auto-fit, minmax(200px, 250px));
+    /*grid-template-columns: repeat(auto-fill, 200px);*/
+    /*flex-flow: row wrap;*/
+    /*flex-wrap:wrap;*/
+    /*justify-content: space-around;*/
+}
+
+.tile {
+    /*width:200px;*/
+    height: 200px;
+    background-color: #e1e1e1;
+    text-align: center;
+    line-height: normal;
+    display: inline-block;
+    border: none;
+    transition:0.2s all ease-in-out;
+    /*margin:10px;*/
+}
+
+.btnWrap {
+    display: inherit;
+    text-decoration: none;
+    color: inherit;
+}
+
+    .btnWrap:hover {
+        text-decoration: none;
+        color: inherit;
+    }
+.tile:hover {
+    background-color: #ff7f00 ;
+    border: 1px solid #970000;
+    
+}
+.dropdown {
+    height: 34px;
+    border-radius: 4px;
+    border: 1px solid #ccc !important;
+    width: 100%;
+}
+.btnStyle {
+    background-color: #ff7f00;
+    color: white;
+    letter-spacing: 1px;
+}
+    .btnStyle:hover {
+        background-color: #ff6a00;
+        color: white;
+        letter-spacing: 1px;
+    }
+/*.navbar-color {
+    background: #ff9932;
+    background: -moz-linear-gradient(top, #ff9932 0%, #f4812e 50%, #ff9932 100%);
+    background: -webkit-linear-gradient(top, #ff9932 0%,#f4812e 50%,#ff9932 100%);
+    background: linear-gradient(to bottom, #ff9932 0%,#f4812e 50%,#ff9932 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#ff9932', endColorstr='#ff9932',GradientType=0 );
+}*/
+/*.tilesContainer .tile:nth-child(2n){
+    flex-
+}*/
+/*.twrap{
+    flex-wrap:wrap;
+}*/
