@@ -26,14 +26,14 @@
     <div class="form-group">
         @Html.LabelFor(m => m.FromTime, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.FromTime)
+            @Html.EditorFor(m => m.FromTime, new { htmlAttributes = new { @class = "dropdown" } })
             @Html.ValidationMessageFor(m => m.FromTime)
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.ToTime, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.EditorFor(m => m.ToTime)
+            @Html.EditorFor(m => m.ToTime, new { htmlAttributes = new { @class = "dropdown" } })
             @Html.ValidationMessageFor(m => m.ToTime)
         </div>
     </div>
@@ -43,7 +43,7 @@
     @ViewBag.Success
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Dodaj" />
+            <input type="submit" class="btn btn-default col-md-12 btnStyle" value="Dodaj" />
         </div>
     </div>
 }

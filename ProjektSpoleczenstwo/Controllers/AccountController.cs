@@ -60,7 +60,7 @@ namespace ProjektSpoleczenstwo.Controllers
         public ActionResult CardRequest(int EmployeeId)
         {
             Employee employee = db.Employee.Find(EmployeeId);
-            if (db.Employee.Where(x=>x.Id != EmployeeId).Any(x => x.RegisterCard == true)) //allow only one
+            if (db.Employee.Where(x => x.Id != EmployeeId).Any(x => x.RegisterCard == true)) //allow only one
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest); // mozna rejestrowac jednoczesnie tylko 1 karte
             }
@@ -77,14 +77,14 @@ namespace ProjektSpoleczenstwo.Controllers
                 db.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.Created);
             }
-            
-            
+
+
         }
         [AllowAnonymous]
         public ActionResult Punch(string UID)
         {
             //jesli karty nie ma zarejestrowanej i zaden uzytykownik nie chce rejestrować----
-            if (db.Employee.Any(x => x.RegisterCard == true) && !db.Employee.Any(x=>x.CardUID == UID))
+            if (db.Employee.Any(x => x.RegisterCard == true) && !db.Employee.Any(x => x.CardUID == UID))
             {
                 Employee employee = db.Employee.SingleOrDefault(x => x.RegisterCard == true);
                 employee.CardUID = UID;
@@ -95,14 +95,14 @@ namespace ProjektSpoleczenstwo.Controllers
             Employee emp = db.Employee.SingleOrDefault(x => x.CardUID == UID);
             if (emp == null)
             {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+                return new HttpStatusCodeResult(HttpStatusCode.Conflict);
             }
             //jesli ktos pracuje za dlugo to ustawia mu i tak maksymalna godzine pracy?
             //jesli ktos sie nie odbil jednego dnia to drugiego dnia ustawia mu wyjscie na godzinę ukonczenia pracy w dbjob
             //check if punch today - if not, enum.in and set
-            
 
-            if(DateTime.Now.Hour < emp.Job.WorkFromTime.Hours && DateTime.Now.Minute < emp.Job.WorkFromTime.Minutes
+
+            if (DateTime.Now.Hour < emp.Job.WorkFromTime.Hours && DateTime.Now.Minute < emp.Job.WorkFromTime.Minutes
                 || DateTime.Now.Hour > emp.Job.WorkToTime.Hours && DateTime.Now.Minute > emp.Job.WorkToTime.Minutes)//nie mozna sie odbic, kiedy nie obowiazuja godziny pracy
             {
                 return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
@@ -113,7 +113,7 @@ namespace ProjektSpoleczenstwo.Controllers
                 PunchTime = DateTime.Now,
                 EmployeeId = emp.Id
             };
-            var punch = db.WorkHours.Where(x=>x.EmployeeId == emp.Id).OrderBy(x=>x.PunchTime).ToList().LastOrDefault();
+            var punch = db.WorkHours.Where(x => x.EmployeeId == emp.Id).OrderBy(x => x.PunchTime).ToList().LastOrDefault();
             var currentHour = DateTime.Now.Hour;
             var currentMinutes = DateTime.Now.Minute;
 
@@ -151,7 +151,7 @@ namespace ProjektSpoleczenstwo.Controllers
                 db.SaveChanges();
                 return new HttpStatusCodeResult(HttpStatusCode.OK);
             }
-            else if(punch.PunchType == PunchEnum.IN)
+            else if (punch.PunchType == PunchEnum.IN)
             {
                 var LastIn = db.WorkHours
                    .Where(x => x.EmployeeId == emp.Id)

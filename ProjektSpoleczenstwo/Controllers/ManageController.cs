@@ -81,16 +81,17 @@ namespace ProjektSpoleczenstwo.Controllers
         [HttpGet]
         public ActionResult Summary()
         {
-            DateTime ThisMonth = new DateTime(DateTime.Now.Year,DateTime.Now.Month,1);
-            List<WorkHours> HoursList = db.WorkHours.Where(x=>x.PunchTime >= ThisMonth).ToList();
+            DateTime ThisMonth = new DateTime(DateTime.Now.Year, DateTime.Now.Month, 1);
+            List<WorkHours> HoursList = db.WorkHours.Where(x => x.PunchTime >= ThisMonth).ToList();
             List<SummaryViewModel> summary = new List<SummaryViewModel>();
             foreach (var emp in db.Employee.ToList())
             {
-                
-                var workhrs = HoursList.Where(x=>x.EmployeeId == emp.Id).Select(x=>x.ElapsedTime).Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
-                summary.Add(new SummaryViewModel() {
-                    Employee = emp.Name+" "+emp.Surname,
-                    Salary = workhrs.Hours*emp.Job.Salary,
+
+                var workhrs = HoursList.Where(x => x.EmployeeId == emp.Id).Select(x => x.ElapsedTime).Aggregate(TimeSpan.Zero, (subtotal, t) => subtotal.Add(t));
+                summary.Add(new SummaryViewModel()
+                {
+                    Employee = emp.Name + " " + emp.Surname,
+                    Salary = workhrs.Hours * emp.Job.Salary,
                     Department = emp.Department.Name,
                     Job = emp.Job.Title,
                     WorkHours = workhrs.Hours
