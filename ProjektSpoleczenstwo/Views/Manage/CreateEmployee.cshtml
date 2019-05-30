@@ -32,13 +32,13 @@
     <div class="form-group">
         @Html.LabelFor(m => m.DepartmentId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Deps, "Value", "Text"))
+            @Html.DropDownListFor(m => m.DepartmentId, new SelectList(Model.Deps, "Value", "Text"), new { @class = "dropdown" })
         </div>
     </div>
     <div class="form-group">
         @Html.LabelFor(m => m.JobId, new { @class = "col-md-2 control-label" })
         <div class="col-md-10">
-            @Html.DropDownListFor(m => m.JobId, new SelectList(Model.Jobs, "Value", "Text"))
+            @Html.DropDownListFor(m => m.JobId, new SelectList(Model.Jobs, "Value", "Text"), new { @class = "dropdown" })
         </div>
     </div>
     for (int i = 0; i < Model.Deps.Count; i++)
@@ -56,7 +56,7 @@
     @Html.ValidationSummary("", new { @class = "text-danger" })
     <div class="form-group">
         <div class="col-md-offset-2 col-md-10">
-            <input type="submit" class="btn btn-default" value="Dodaj" />
+            <input type="submit" class="btn btn-default col-md-12 btnStyle" value="Dodaj" />
         </div>
     </div>
 }
